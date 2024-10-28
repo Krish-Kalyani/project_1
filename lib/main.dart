@@ -121,7 +121,7 @@ class UserDataProvider with ChangeNotifier {
 }
 
 class BankApp extends StatelessWidget {
-  const BankApp({Key? key}) : super(key: key);
+  const BankApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +139,7 @@ class BankApp extends StatelessWidget {
 
 // Login Screen code
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
