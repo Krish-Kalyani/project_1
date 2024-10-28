@@ -293,3 +293,27 @@ Widget _buildInputField(String hint, TextEditingController controller, Function(
     super.dispose();
   }
 }
+// SavingGoals screen with input handling and asset images
+class SavingGoalsScreen extends StatelessWidget {
+  const SavingGoalsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Saving Goals')),
+      body: Column(
+        children: [
+          Image.asset('assets/logo.png', width: 120, height: 120),
+          const Text('What are your savings goals?'),
+          _buildGoalRow(context, 'assets/emergency.png', 'Emergency'),
+          _buildGoalRow(context, 'assets/vacation.png', 'Vacation'),
+          _buildGoalRow(context, 'assets/medical.png', 'Medical'),
+          _buildGoalRow(context, 'assets/shopping.png', 'Shopping'),
+          ElevatedButton(
+            onPressed: () => Navigator.pushNamed(context, '/investments'),
+            child: const Text('Next'),
+          ),
+        ],
+      ),
+    );
+  }
