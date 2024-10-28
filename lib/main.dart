@@ -136,6 +136,7 @@ class BankApp extends StatelessWidget {
     );
   }
 }
+
 // Login Screen code
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -163,3 +164,32 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildTextField(String hint, {bool obscureText = false}) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          hintText: hint,
+          filled: true,
+          fillColor: Colors.green[100],
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildButton(String text, BuildContext context,
+      {VoidCallback? onPressed}) {
+    return ElevatedButton(
+      onPressed: onPressed ?? () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.green,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        minimumSize: const Size(200, 40),
+      ),
+      child: Text(text, style: const TextStyle(color: Colors.white)),
+    );
+  }
+}
