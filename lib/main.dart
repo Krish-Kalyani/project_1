@@ -9,6 +9,7 @@ void main() {
     ),
   );
 }
+
 //USER DATA
 class UserData {
   double income;
@@ -37,8 +38,11 @@ class UserData {
   });
 // TOTAL OF ALL EXPENSES
   double get totalExpenses =>
-      houseExpense + groceriesExpense + entertainmentExpense +
-      transportationExpense + miscExpense;
+      houseExpense +
+      groceriesExpense +
+      entertainmentExpense +
+      transportationExpense +
+      miscExpense;
 
   // TOTAL OF SAVING GOALS
   double get totalSavingsGoal =>
@@ -82,3 +86,54 @@ class UserDataProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void updateSavingsGoal(String goalCategory, double amount) {
+    switch (goalCategory) {
+      case 'Emergency':
+        _userData.emergencySavings = amount;
+        break;
+      case 'Vacation':
+        _userData.vacationSavings = amount;
+        break;
+      case 'Medical':
+        _userData.medicalSavings = amount;
+        break;
+      case 'Shopping':
+        _userData.shoppingSavings = amount;
+        break;
+    }
+    notifyListeners();
+  }
+
+  void resetExpenses() {
+    _userData.houseExpense = 0.0;
+    _userData.groceriesExpense = 0.0;
+    _userData.entertainmentExpense = 0.0;
+    _userData.transportationExpense = 0.0;
+    _userData.miscExpense = 0.0;
+    notifyListeners();
+  }
+
+  void updateInvestments(double newInvestments) {
+    _userData.investments = newInvestments;
+    notifyListeners();
+  }
+}
+
+class BankApp extends StatelessWidget {
+  const BankApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const LoginScreen(),
+      routes: {
+        '/incomeExpenses': (context) => const IncomeExpensesScreen(),
+        '/savingGoals': (context) => const SavingGoalsScreen(),
+        '/investments': (context) => const InvestmentsScreen(),
+        '/insights': (context) => const InsightsScreen(),
+      },
+    );
+  }
+}
+// Login Screen code
