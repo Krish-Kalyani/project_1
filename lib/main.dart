@@ -195,8 +195,15 @@ class LoginScreen extends StatelessWidget {
 }
 // IncomeExpenses screen with input handling and asset images
 class IncomeExpensesScreen extends StatefulWidget {
-  const IncomeExpensesScreen({Key? key}) : super(key: key);
+  const IncomeExpensesScreen({super.key});
 
   @override
   _IncomeExpensesScreenState createState() => _IncomeExpensesScreenState();
 }
+class _IncomeExpensesScreenState extends State<IncomeExpensesScreen> {
+  final TextEditingController incomeController = TextEditingController();
+  final TextEditingController houseController = TextEditingController();
+  final TextEditingController groceriesController = TextEditingController();
+  final TextEditingController entertainmentController = TextEditingController();
+  final TextEditingController transportationController = TextEditingController();
+  final TextEditingController miscController = TextEditingController();
