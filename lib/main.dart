@@ -193,3 +193,10 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+// IncomeExpenses screen with input handling and asset images
+class IncomeExpensesScreen extends StatefulWidget {
+  const IncomeExpensesScreen({Key? key}) : super(key: key);
+
+  @override
+  _IncomeExpensesScreenState createState() => _IncomeExpensesScreenState();
+}
