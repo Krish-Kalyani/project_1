@@ -207,3 +207,37 @@ class _IncomeExpensesScreenState extends State<IncomeExpensesScreen> {
   final TextEditingController entertainmentController = TextEditingController();
   final TextEditingController transportationController = TextEditingController();
   final TextEditingController miscController = TextEditingController();
+
+ @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Income & Expenses')),
+      body: Column(
+        children: [
+          Image.asset('assets/logo.png', width: 120, height: 120),
+          const Text('What is your previous or current month’s income?'),
+          _buildInputField('Enter Income Amount Here', incomeController, (value) {
+            Provider.of<UserDataProvider>(context, listen: false)
+                .updateIncome(double.tryParse(value) ?? 0.0);
+          }),
+          const Text('What are your expenses?'),
+          _buildExpenseRow(context, 'assets/house.png', 'House', houseController),
+          _buildExpenseRow(context, 'assets/groceries.png', 'Groceries', groceriesController),
+          _buildExpenseRow(context, 'assets/entertainment2.png', 'Entertainment', entertainmentController),
+          _buildExpenseRow(context, 'assets/transportation.png', 'Transportation', transportationController),
+          _buildExpenseRow(context, 'assets/misc.png', 'Miscellaneous', miscController),
+          ElevatedButton(
+            onPressed: () => Navigator.pushNamed(context, '/savingGoals'),
+            child: const Text('Next'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Provider.of<UserDataProvider>(context, listen: false).resetExpenses();
+              _resetExpenseFields();
+            },
+            child: const Text('Reset Expenses'),
+          ),
+        ],
+      ),
+    );
+  }
