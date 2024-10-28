@@ -137,3 +137,29 @@ class BankApp extends StatelessWidget {
   }
 }
 // Login Screen code
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset('assets/logo.png', width: 120, height: 120),
+          const Text(
+            'Login/Create An Account To Organize Your Money The Right Way!',
+          ),
+          const SizedBox(height: 20),
+          _buildTextField('Enter Username'),
+          TextButton(onPressed: () {}, child: const Text('Forgot Username?')),
+          _buildTextField('Enter Password', obscureText: true),
+          TextButton(onPressed: () {}, child: const Text('Forgot Password?')),
+          _buildButton('Login', context, onPressed: () {
+            Navigator.pushNamed(context, '/incomeExpenses');
+          }),
+          const Text("I'm a new user. Sign Up"),
+        ],
+      ),
+    );
+  }
