@@ -241,3 +241,35 @@ class _IncomeExpensesScreenState extends State<IncomeExpensesScreen> {
       ),
     );
   }
+
+Widget _buildInputField(String hint, TextEditingController controller, Function(String) onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hint,
+          filled: true,
+          fillColor: Colors.green[100],
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        keyboardType: TextInputType.number,
+        onChanged: onChanged,
+      ),
+    );
+  }
+
+  Widget _buildExpenseRow(BuildContext context, String iconPath, String label, TextEditingController controller) {
+    return Row(
+      children: [
+        Image.asset(iconPath, width: 40, height: 40),
+        const SizedBox(width: 10),
+        Expanded(
+          child: _buildInputField(label, controller, (value) {
+            Provider.of<UserDataProvider>(context, listen: false)
+                .addExpense(label, double.tryParse(value) ?? 0.0);
+          }),
+        ),
+      ],
+    );
+  }
