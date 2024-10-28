@@ -35,3 +35,50 @@ class UserData {
     this.shoppingSavings = 0.0,
     this.investments = 0.0,
   });
+// TOTAL OF ALL EXPENSES
+  double get totalExpenses =>
+      houseExpense + groceriesExpense + entertainmentExpense +
+      transportationExpense + miscExpense;
+
+  // TOTAL OF SAVING GOALS
+  double get totalSavingsGoal =>
+      emergencySavings + vacationSavings + medicalSavings + shoppingSavings;
+}
+
+// DATA ACROSS APP
+class UserDataProvider with ChangeNotifier {
+  final UserData _userData = UserData();
+
+  double get income => _userData.income;
+  double get totalExpenses => _userData.totalExpenses;
+  double get totalSavingsGoal => _userData.totalSavingsGoal;
+  double get investments => _userData.investments;
+
+  // BALANCE CALCULATION
+  double get availableBalance => _userData.income - _userData.totalExpenses;
+
+  void updateIncome(double newIncome) {
+    _userData.income = newIncome;
+    notifyListeners();
+  }
+
+  void addExpense(String category, double amount) {
+    switch (category) {
+      case 'House':
+        _userData.houseExpense = amount;
+        break;
+      case 'Groceries':
+        _userData.groceriesExpense = amount;
+        break;
+      case 'Entertainment':
+        _userData.entertainmentExpense = amount;
+        break;
+      case 'Transportation':
+        _userData.transportationExpense = amount;
+        break;
+      case 'Miscellaneous':
+        _userData.miscExpense = amount;
+        break;
+    }
+    notifyListeners();
+  }
