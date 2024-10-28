@@ -273,3 +273,23 @@ Widget _buildInputField(String hint, TextEditingController controller, Function(
       ],
     );
   }
+
+ void _resetExpenseFields() {
+    houseController.clear();
+    groceriesController.clear();
+    entertainmentController.clear();
+    transportationController.clear();
+    miscController.clear();
+  }
+
+  @override
+  void dispose() {
+    incomeController.dispose();
+    houseController.dispose();
+    groceriesController.dispose();
+    entertainmentController.dispose();
+    transportationController.dispose();
+    miscController.dispose();
+    super.dispose();
+  }
+}
