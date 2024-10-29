@@ -341,3 +341,28 @@ class SavingGoalsScreen extends StatelessWidget {
     );
   }
 }
+// Investments screen with asset image
+class InvestmentsScreen extends StatelessWidget {
+  const InvestmentsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Investments')),
+      body: Column(
+        children: [
+          Image.asset('assets/logo.png', width: 120, height: 120),
+          const Text('Enter your current investments'),
+          _buildInputField(context, 'Input Current Investments', (value) {
+            Provider.of<UserDataProvider>(context, listen: false)
+                .updateInvestments(double.tryParse(value) ?? 0.0);
+          }),
+          Image.asset('assets/stocks.png', width: 300, height: 120),
+          ElevatedButton(
+            onPressed: () => Navigator.pushNamed(context, '/insights'),
+            child: const Text('View Insights'),
+          ),
+        ],
+      ),
+    );
+  }
