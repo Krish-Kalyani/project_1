@@ -193,6 +193,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
 // IncomeExpenses screen with input handling and asset images
 class IncomeExpensesScreen extends StatefulWidget {
   const IncomeExpensesScreen({super.key});
@@ -200,15 +201,17 @@ class IncomeExpensesScreen extends StatefulWidget {
   @override
   _IncomeExpensesScreenState createState() => _IncomeExpensesScreenState();
 }
+
 class _IncomeExpensesScreenState extends State<IncomeExpensesScreen> {
   final TextEditingController incomeController = TextEditingController();
   final TextEditingController houseController = TextEditingController();
   final TextEditingController groceriesController = TextEditingController();
   final TextEditingController entertainmentController = TextEditingController();
-  final TextEditingController transportationController = TextEditingController();
+  final TextEditingController transportationController =
+      TextEditingController();
   final TextEditingController miscController = TextEditingController();
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Income & Expenses')),
@@ -216,23 +219,30 @@ class _IncomeExpensesScreenState extends State<IncomeExpensesScreen> {
         children: [
           Image.asset('assets/logo.png', width: 120, height: 120),
           const Text('What is your previous or current month’s income?'),
-          _buildInputField('Enter Income Amount Here', incomeController, (value) {
+          _buildInputField('Enter Income Amount Here', incomeController,
+              (value) {
             Provider.of<UserDataProvider>(context, listen: false)
                 .updateIncome(double.tryParse(value) ?? 0.0);
           }),
           const Text('What are your expenses?'),
-          _buildExpenseRow(context, 'assets/house.png', 'House', houseController),
-          _buildExpenseRow(context, 'assets/groceries.png', 'Groceries', groceriesController),
-          _buildExpenseRow(context, 'assets/entertainment2.png', 'Entertainment', entertainmentController),
-          _buildExpenseRow(context, 'assets/transportation.png', 'Transportation', transportationController),
-          _buildExpenseRow(context, 'assets/misc.png', 'Miscellaneous', miscController),
+          _buildExpenseRow(
+              context, 'assets/house.png', 'House', houseController),
+          _buildExpenseRow(context, 'assets/groceries.png', 'Groceries',
+              groceriesController),
+          _buildExpenseRow(context, 'assets/entertainment2.png',
+              'Entertainment', entertainmentController),
+          _buildExpenseRow(context, 'assets/transportation.png',
+              'Transportation', transportationController),
+          _buildExpenseRow(
+              context, 'assets/misc.png', 'Miscellaneous', miscController),
           ElevatedButton(
             onPressed: () => Navigator.pushNamed(context, '/savingGoals'),
             child: const Text('Next'),
           ),
           ElevatedButton(
             onPressed: () {
-              Provider.of<UserDataProvider>(context, listen: false).resetExpenses();
+              Provider.of<UserDataProvider>(context, listen: false)
+                  .resetExpenses();
               _resetExpenseFields();
             },
             child: const Text('Reset Expenses'),
@@ -242,7 +252,8 @@ class _IncomeExpensesScreenState extends State<IncomeExpensesScreen> {
     );
   }
 
-Widget _buildInputField(String hint, TextEditingController controller, Function(String) onChanged) {
+  Widget _buildInputField(String hint, TextEditingController controller,
+      Function(String) onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
       child: TextField(
@@ -259,7 +270,8 @@ Widget _buildInputField(String hint, TextEditingController controller, Function(
     );
   }
 
-  Widget _buildExpenseRow(BuildContext context, String iconPath, String label, TextEditingController controller) {
+  Widget _buildExpenseRow(BuildContext context, String iconPath, String label,
+      TextEditingController controller) {
     return Row(
       children: [
         Image.asset(iconPath, width: 40, height: 40),
@@ -274,7 +286,7 @@ Widget _buildInputField(String hint, TextEditingController controller, Function(
     );
   }
 
- void _resetExpenseFields() {
+  void _resetExpenseFields() {
     houseController.clear();
     groceriesController.clear();
     entertainmentController.clear();
@@ -293,6 +305,7 @@ Widget _buildInputField(String hint, TextEditingController controller, Function(
     super.dispose();
   }
 }
+
 // SavingGoals screen with input handling and asset images
 class SavingGoalsScreen extends StatelessWidget {
   const SavingGoalsScreen({super.key});
@@ -317,7 +330,8 @@ class SavingGoalsScreen extends StatelessWidget {
       ),
     );
   }
-   Widget _buildGoalRow(BuildContext context, String iconPath, String label) {
+
+  Widget _buildGoalRow(BuildContext context, String iconPath, String label) {
     return Row(
       children: [
         Image.asset(iconPath, width: 40, height: 40),
@@ -328,7 +342,8 @@ class SavingGoalsScreen extends StatelessWidget {
               hintText: label,
               filled: true,
               fillColor: Colors.green[100],
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
             ),
             keyboardType: TextInputType.number,
             onChanged: (value) {
@@ -341,6 +356,7 @@ class SavingGoalsScreen extends StatelessWidget {
     );
   }
 }
+
 // Investments screen with asset image
 class InvestmentsScreen extends StatelessWidget {
   const InvestmentsScreen({super.key});
@@ -366,7 +382,9 @@ class InvestmentsScreen extends StatelessWidget {
       ),
     );
   }
-  Widget _buildInputField(BuildContext context, String hint, Function(String) onChanged) {
+
+  Widget _buildInputField(
+      BuildContext context, String hint, Function(String) onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
       child: TextField(
@@ -398,15 +416,19 @@ class InsightsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildBalanceBox('Available Balance', '\$${userData.availableBalance.toStringAsFixed(2)}'),
-            _buildBalanceBox('Savings Goals', '\$${userData.totalSavingsGoal.toStringAsFixed(2)}'),
-            _buildBalanceBox('Investments', '\$${userData.investments.toStringAsFixed(2)}'),
+            _buildBalanceBox('Available Balance',
+                '\$${userData.availableBalance.toStringAsFixed(2)}'),
+            _buildBalanceBox('Savings Goals',
+                '\$${userData.totalSavingsGoal.toStringAsFixed(2)}'),
+            _buildBalanceBox(
+                'Investments', '\$${userData.investments.toStringAsFixed(2)}'),
             Image.asset('assets/piechart.png', width: 80, height: 80),
           ],
         ),
       ),
     );
   }
+
   Widget _buildBalanceBox(String title, String amount) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0),
@@ -416,7 +438,8 @@ class InsightsScreen extends StatelessWidget {
       child: Column(
         children: [
           Text(title, style: const TextStyle(color: Colors.white)),
-          Text(amount, style: const TextStyle(color: Colors.white, fontSize: 24)),
+          Text(amount,
+              style: const TextStyle(color: Colors.white, fontSize: 24)),
         ],
       ),
     );
