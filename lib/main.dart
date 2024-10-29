@@ -407,3 +407,18 @@ class InsightsScreen extends StatelessWidget {
       ),
     );
   }
+  Widget _buildBalanceBox(String title, String amount) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+          color: Colors.green, borderRadius: BorderRadius.circular(8)),
+      child: Column(
+        children: [
+          Text(title, style: const TextStyle(color: Colors.white)),
+          Text(amount, style: const TextStyle(color: Colors.white, fontSize: 24)),
+        ],
+      ),
+    );
+  }
+}
