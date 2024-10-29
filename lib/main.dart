@@ -295,7 +295,7 @@ Widget _buildInputField(String hint, TextEditingController controller, Function(
 }
 // SavingGoals screen with input handling and asset images
 class SavingGoalsScreen extends StatelessWidget {
-  const SavingGoalsScreen({Key? key}) : super(key: key);
+  const SavingGoalsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -343,7 +343,7 @@ class SavingGoalsScreen extends StatelessWidget {
 }
 // Investments screen with asset image
 class InvestmentsScreen extends StatelessWidget {
-  const InvestmentsScreen({Key? key}) : super(key: key);
+  const InvestmentsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -382,3 +382,28 @@ class InvestmentsScreen extends StatelessWidget {
     );
   }
 }
+
+//INSIGHTS SCREEN
+class InsightsScreen extends StatelessWidget {
+  const InsightsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final userData = Provider.of<UserDataProvider>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Insights')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildBalanceBox('Available Balance', '\$${userData.availableBalance.toStringAsFixed(2)}'),
+            _buildBalanceBox('Savings Goals', '\$${userData.totalSavingsGoal.toStringAsFixed(2)}'),
+            _buildBalanceBox('Investments', '\$${userData.investments.toStringAsFixed(2)}'),
+            Image.asset('assets/piechart.png', width: 80, height: 80),
+          ],
+        ),
+      ),
+    );
+  }
