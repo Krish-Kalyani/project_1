@@ -317,3 +317,27 @@ class SavingGoalsScreen extends StatelessWidget {
       ),
     );
   }
+   Widget _buildGoalRow(BuildContext context, String iconPath, String label) {
+    return Row(
+      children: [
+        Image.asset(iconPath, width: 40, height: 40),
+        const SizedBox(width: 10),
+        Expanded(
+          child: TextField(
+            decoration: InputDecoration(
+              hintText: label,
+              filled: true,
+              fillColor: Colors.green[100],
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+            ),
+            keyboardType: TextInputType.number,
+            onChanged: (value) {
+              Provider.of<UserDataProvider>(context, listen: false)
+                  .updateSavingsGoal(label, double.tryParse(value) ?? 0.0);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
