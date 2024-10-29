@@ -366,3 +366,19 @@ class InvestmentsScreen extends StatelessWidget {
       ),
     );
   }
+  Widget _buildInputField(BuildContext context, String hint, Function(String) onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: hint,
+          filled: true,
+          fillColor: Colors.green[100],
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+        keyboardType: TextInputType.number,
+        onChanged: onChanged,
+      ),
+    );
+  }
+}
